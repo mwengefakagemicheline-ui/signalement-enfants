@@ -950,3 +950,48 @@ a:focus-visible, button:focus-visible { outline: 3px solid #76bf91; outline-offs
 }
 @media (max-width: 900px) { .map-section { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 650px) { .goma-map-frame { height: 360px; border-radius: 18px; } }
+
+/* Motion system: calm entrances, light depth, and accessible reduced motion. */
+.motion-reveal {
+  opacity: 0;
+  transform: translate3d(0, 22px, 0);
+  transition: opacity 680ms cubic-bezier(.2, .72, .25, 1), transform 680ms cubic-bezier(.2, .72, .25, 1);
+  will-change: opacity, transform;
+}
+.motion-reveal.is-visible { opacity: 1; transform: translate3d(0, 0, 0); }
+.hero-content.motion-reveal { transition-delay: 70ms; }
+.hero-visual.motion-reveal { transform: translate3d(0, 18px, 0) scale(.975); transition-delay: 180ms; }
+.hero-visual.motion-reveal.is-visible { transform: translate3d(0, 0, 0) scale(1); }
+.stats-bar > div.motion-reveal:nth-child(2) { transition-delay: 80ms; }
+.stats-bar > div.motion-reveal:nth-child(3) { transition-delay: 150ms; }
+.stats-bar > div.motion-reveal:nth-child(4) { transition-delay: 220ms; }
+.mission-card, .contact-card, .tracking-card {
+  transition: transform 260ms ease, box-shadow 260ms ease, border-color 260ms ease;
+}
+.mission-card:hover, .contact-card:hover, .tracking-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 36px rgba(27, 67, 45, .1);
+}
+.hero-photo-cover, .hero-photo-small {
+  transition: transform 420ms cubic-bezier(.2, .72, .25, 1), box-shadow 420ms ease;
+}
+.hero-photo-cover:hover { transform: translateY(-5px) rotate(-.4deg); box-shadow: 0 24px 52px rgba(23, 52, 39, .2); }
+.hero-photo-small:hover { transform: translateY(-4px) scale(1.025); }
+.primary-button, .secondary-button, .nav-button, .map-open-link {
+  transition: transform 200ms ease, box-shadow 200ms ease, background-color 200ms ease, color 200ms ease;
+}
+.primary-button:hover, .nav-button:hover { transform: translateY(-2px); box-shadow: 0 9px 20px rgba(17, 115, 70, .18); }
+.secondary-button:hover { transform: translateY(-2px); }
+.navbar nav a { transition: color 180ms ease; }
+.navbar nav a:hover { color: #14784b; }
+.app-shell[data-theme="dark"] .navbar nav a:hover { color: #86d5a0; }
+@keyframes photo-drift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+.hero-photo-small { animation: photo-drift 5.5s ease-in-out infinite; }
+.hero-photo-small:nth-child(2) { animation-delay: -2.75s; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .motion-reveal { opacity: 1; transform: none; will-change: auto; }
+}
