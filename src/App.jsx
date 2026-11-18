@@ -38,7 +38,7 @@ function App() {
   const isAdmin = currentPath === '/admin';
   const page = ({
     '/': 'home',
-    '/mission': 'mission',
+    '/mission': 'home',
     '/carte': 'map',
     '/suivi': 'tracking',
     '/signaler': 'report',
@@ -320,7 +320,7 @@ function App() {
         </a>
         <nav aria-label="Navigation principale">
           <a href="/" aria-current={page === 'home' ? 'page' : undefined}>Accueil</a>
-          <a href="/mission" aria-current={page === 'mission' ? 'page' : undefined}>Notre mission</a>
+          <a href="/#mission">Notre mission</a>
           <a href="/carte" aria-current={page === 'map' ? 'page' : undefined}>Carte</a>
           <a href="/suivi" aria-current={page === 'tracking' ? 'page' : undefined}>Suivi</a>
           <a href="/contact" aria-current={page === 'contact' ? 'page' : undefined}>Contact</a>
@@ -357,13 +357,18 @@ function App() {
         <section className="stats-bar" aria-label="Services de la plateforme">
           <div><strong>Confidentiel</strong><span>Transmission protégée</span></div><div><strong>Goma</strong><span>Quartiers desservis</span></div><div><strong>Référence</strong><span>Suivi du dossier</span></div><div><strong>À tout moment</strong><span>Accès à la plateforme</span></div>
         </section>
+        <section className="mission" id="mission">
+          <p className="section-label">NOTRE MISSION</p>
+          <h2>Protéger les enfants, écouter et orienter</h2>
+          <p>EnfanceSûre facilite le signalement des situations préoccupantes à Goma et aide à rendre les étapes d’orientation et de suivi plus claires, dans le respect de la confidentialité.</p>
+          <div className="mission-grid">
+            <article className="mission-card"><h3>Écouter avec respect</h3><p>Un parcours simple pour partager une inquiétude et prendre en compte la sécurité et la dignité de l’enfant.</p></article>
+            <article className="mission-card"><h3>Orienter de façon responsable</h3><p>Faciliter l’orientation vers les acteurs compétents et les services réellement disponibles à Goma.</p></article>
+            <article className="mission-card"><h3>Rendre le suivi plus lisible</h3><p>Présenter l’avancement d’un dossier à l’aide d’une référence, en protégeant les informations sensibles.</p></article>
+          </div>
+          <div className="page-actions"><a href="/signaler" className="primary-button">Déclarer une situation</a><a href="/suivi" className="secondary-button">Suivre un dossier</a></div>
+        </section>
         </>}
-
-        {page === 'mission' && <section className="mission page-section" id="signalements">
-          <p className="section-label">NOTRE MISSION</p><h2>Protéger les enfants</h2><p>Notre mission principale est de protéger les enfants en facilitant le signalement des violences, l’intervention des services compétents et le suivi des enfants victimes, tout en garantissant la confidentialité de leurs informations.</p>
-          <div className="mission-grid"><article className="mission-card"><h3>Signalement confidentiel</h3><p>Un formulaire guidé pour partager uniquement les informations utiles.</p></article><article className="mission-card"><h3>Repérage local</h3><p>Les quartiers de Goma sont réservés aux équipes habilitées.</p></article><article className="mission-card"><h3>Suivi transparent</h3><p>Une référence unique permet de suivre l’avancement d’un dossier.</p></article></div>
-          <div className="page-actions"><a href="/signaler" className="primary-button">Faire un signalement</a><a href="/carte" className="secondary-button">Voir la carte de Goma</a></div>
-        </section>}
 
         {page === 'map' && <section className="map-section page-section" id="carte">
           <div className="map-copy">
